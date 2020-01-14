@@ -6,7 +6,7 @@
     state: restarted
 
 - name: common | Load iptables rules for IPv4
-  shell: 'cat {{ common__conf_ipv4 }} | iptables-restore'
+  shell: 'cat {{ common__iptables__conf_ipv4 }} | iptables-restore'
 
 - name: common | Load iptables rules for IPv6
-  shell: 'cat {{ common__conf_ipv6 }} | ip6tables-restore'
+  shell: 'cat {{ common__iptables__conf_ipv6 }} | ip6tables-restore'
