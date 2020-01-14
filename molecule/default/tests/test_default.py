@@ -10,6 +10,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 @pytest.mark.parametrize(
     'package_name',
     [
+        'apt-transport-https',
         'bash-completion',
         'certbot',
         'colordiff',
@@ -18,6 +19,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
         'gnupg2',
         'iptables-persistent',
         'less',
+        'software-properties-common',
         'vim',
         'wget',
     ],
