@@ -2,3 +2,8 @@
 common__iptables__conf_dir: '/etc/iptables'
 common__iptables__conf_ipv4: '{{ common__iptables__conf_dir }}/rules.v4'
 common__iptables__conf_ipv6: '{{ common__iptables__conf_dir }}/rules.v6'
+
+common__nginx__conf_dir: '/etc/nginx'
+common__nginx__confd_dir: '{{ common__nginx__conf_dir }}/conf.d'
+common__nginx__available_dir: '{{ common__nginx__conf_dir }}/sites-available'
+common__nginx__enabled_dir: '{{ common__nginx__conf_dir }}/sites-enabled'

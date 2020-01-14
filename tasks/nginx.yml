@@ -1,0 +1,55 @@
+---
+- name: Install Nginx
+  apt:
+    update_cache: true
+    name: nginx
+
+- name: Create directories for Nginx configuration
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rx,o=rx'
+    owner: root
+    group: root
+  with_items:
+    - '{{ common__nginx__conf_dir }}'
+    - '{{ common__nginx__confd_dir }}'
+    - '{{ common__nginx__available_dir }}'
+    - '{{ common__nginx__enabled_dir }}'
+
+- name: Remove Nginx default site
+  file:
+    state: absent
+    path: '{{ common__nginx__enabled_dir }}/default'
+  when: common__nginx__remove_default | bool
+  notify: common | Restart Nginx
+
+- name: Add Nginx upstreams
+  template:
+    src: 'templates/nginx/upstream.conf'
+    dest: '{{ common__nginx__confd_dir }}/upstream-{{ item.name }}.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  with_items: '{{ common__nginx__upstreams }}'
+  notify: common | Restart Nginx
+
+- name: Add Nginx sites
+  template:
+    src: 'templates/nginx/{{ item.type }}.conf'
+    dest: '{{ common__nginx__available_dir }}/{{ item.domain }}.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  with_items: '{{ common__nginx__sites }}'
+  notify: common | Restart Nginx
+
+- name: Enable Nginx sites
+  file:
+    state: link
+    src: '{{ common__nginx__available_dir }}/{{ item.domain }}.conf'
+    dest: '{{ common__nginx__enabled_dir }}/{{ item.domain }}.conf'
+    owner: root
+    group: root
+  with_items: '{{ common__nginx__sites }}'
+  notify: common | Restart Nginx

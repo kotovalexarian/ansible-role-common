@@ -49,3 +49,8 @@ def test_iptables_config(host, version):
     assert f.user == 'root'
     assert f.group == 'root'
     assert f.mode == 0o644
+
+
+def test_nginx_default_removed(host):
+    assert host.file('/etc/nginx/sites-available/default').exists
+    assert not host.file('/etc/nginx/sites-enabled/default').exists
