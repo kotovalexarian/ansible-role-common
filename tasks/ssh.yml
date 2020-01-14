@@ -1,0 +1,32 @@
+---
+- name: Harden SSH daemon
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  notify: common | Restart SSH daemon
+  with_items:
+    - regexp: '^#?AcceptEnv '
+      line: 'AcceptEnv LANG LC_*'
+    - regexp: '^#?PermitUserEnvironment '
+      line: 'PermitUserEnvironment no'
+    - regexp: '^#?PermitRootLogin '
+      line: 'PermitRootLogin no'
+    - regexp: '^#?MaxAuthTries '
+      line: 'MaxAuthTries 2'
+    - regexp: '^#?MaxSessions '
+      line: 'MaxSessions 5'
+    - regexp: '^#?PasswordAuthentication '
+      line: 'PasswordAuthentication no'
+    - regexp: '^#?ChallengeResponseAuthentication '
+      line: 'ChallengeResponseAuthentication no'
+    - regexp: '^#?AllowAgentForwarding '
+      line: 'AllowAgentForwarding no'
+    - regexp: '^#?AllowTcpForwarding '
+      line: 'AllowTcpForwarding no'
+    - regexp: '^#?X11Forwarding '
+      line: 'X11Forwarding no'
+    - regexp: '^#?TCPKeepAlive '
+      line: 'TCPKeepAlive no'
+    - regexp: '^#?UseDNS '
+      line: 'UseDNS no'

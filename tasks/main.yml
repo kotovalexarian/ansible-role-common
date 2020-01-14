@@ -1,2 +1,3 @@
 ---
 - include_tasks: usability.yml
+- include_tasks: ssh.yml
