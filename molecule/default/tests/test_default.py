@@ -11,6 +11,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     'package_name',
     [
         'bash-completion',
+        'certbot',
         'colordiff',
         'curl',
         'iptables-persistent',
@@ -54,16 +55,6 @@ def test_iptables_config(host, version):
 def test_nginx_default_removed(host):
     assert host.file('/etc/nginx/sites-available/default').exists
     assert not host.file('/etc/nginx/sites-enabled/default').exists
-
-
-def test_certbot_exe(host):
-    f = host.file('/usr/local/bin/certbot-auto')
-
-    assert f.exists
-    assert f.is_file
-    assert f.user == 'root'
-    assert f.group == 'root'
-    assert f.mode == 0o755
 
 
 def test_certbot_cli_config(host):

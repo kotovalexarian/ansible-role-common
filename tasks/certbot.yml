@@ -1,11 +1,7 @@
 ---
 - name: Install Certbot
-  copy:
-    src: files/certbot/certbot-auto
-    dest: /usr/local/bin/certbot-auto
-    mode: 'u=rwx,g=rx,o=rx'
-    owner: root
-    group: root
+  apt:
+    name: certbot
 
 - name: Create directory for Let's Encrypt configuration
   file:
@@ -32,7 +28,7 @@
     group: root
 
 - name: Obtain Let's Encrypt certificate
-  command: 'certbot-auto certonly'
+  command: 'certbot certonly'
   register: common__certbot__result
   when: common__certbot__run|bool
   changed_when: >-
