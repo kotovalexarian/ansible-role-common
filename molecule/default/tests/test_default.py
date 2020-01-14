@@ -13,3 +13,13 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 )
 def test_packages(host, package_name):
     assert host.package(package_name).is_installed
+
+
+def test_vim_config(host):
+    f = host.file('/etc/vim/vimrc.local')
+
+    assert f.exists
+    assert f.is_file
+    assert f.user == 'root'
+    assert f.group == 'root'
+    assert f.mode == 0o644
