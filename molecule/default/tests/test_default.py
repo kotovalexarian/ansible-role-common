@@ -17,6 +17,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
         'iptables-persistent',
         'less',
         'vim',
+        'wget',
     ],
 )
 def test_packages(host, package_name):
