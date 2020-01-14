@@ -20,5 +20,4 @@ galaxy_info:
       versions:
         - xenial  # Ubuntu 16.04 LTS Xenial Xerus
         - bionic  # Ubuntu 18.04 LTS Bionic Beaver
-        - disco   # Ubuntu 19.04 Disco Dingo
         - eoan    # Ubuntu 19.10 Eoan Ermine
