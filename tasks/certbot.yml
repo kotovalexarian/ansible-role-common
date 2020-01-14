@@ -34,7 +34,7 @@
 - name: Obtain Let's Encrypt certificate
   command: 'certbot certonly'
   register: common__certbot__result
-  when: common__certbot__run
+  when: common__certbot__run|bool
   changed_when: >-
     common__certbot__result.stdout is
     not search('Certificate not yet due for renewal; no action taken.')
