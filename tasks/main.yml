@@ -1,4 +1,7 @@
 ---
+- name: Update APT cache
+  apt:
+    update_cache: true
 - include_tasks: usability.yml
 - include_tasks: ssh.yml
 - include_tasks: iptables.yml

@@ -1,7 +1,6 @@
 ---
 - name: Install iptables-persistent
   apt:
-    update_cache: true
     name: iptables-persistent
 
 - name: Create directory for iptables configuration

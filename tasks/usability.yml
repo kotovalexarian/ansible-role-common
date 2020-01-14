@@ -1,7 +1,6 @@
 ---
 - name: Install useful packages
   apt:
-    update_cache: true
     name: ['bash-completion', 'colordiff', 'curl', 'less', 'vim']
 
 - name: Install Vim config

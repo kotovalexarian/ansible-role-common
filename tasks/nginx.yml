@@ -1,7 +1,6 @@
 ---
 - name: Install Nginx
   apt:
-    update_cache: true
     name: nginx
 
 - name: Create directories for Nginx configuration
