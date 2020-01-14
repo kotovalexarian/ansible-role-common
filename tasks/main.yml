@@ -1,7 +1,4 @@
 ---
-- name: Update APT cache
-  apt:
-    cache_valid_time: 86400
 - include_tasks: usability.yml
 - include_tasks: ssh.yml
 - include_tasks: iptables.yml

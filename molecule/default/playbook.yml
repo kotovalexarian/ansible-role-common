@@ -4,6 +4,7 @@
   module_defaults:
     apt:
       force_apt_get: true
+      cache_valid_time: 86400
   roles:
     - role: common
       become: true
