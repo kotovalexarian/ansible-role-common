@@ -17,13 +17,9 @@
 -A INPUT ! -i lo -s 127.0.0.0/8 -j REJECT
 -A OUTPUT  -o lo                -j ACCEPT
 
-# Allow all outgoing clearnet traffic.
--A OUTPUT -o eth0 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
--A INPUT  -i eth0 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-
-# Allow all outgoing private network traffic.
--A OUTPUT -o eth1 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
--A INPUT  -i eth1 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+# Allow all outgoing traffic.
+-A OUTPUT -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A INPUT  -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
 # Allow incoming ICMP ping.
 -A INPUT  -p icmp --icmp-type echo-request -j ACCEPT
