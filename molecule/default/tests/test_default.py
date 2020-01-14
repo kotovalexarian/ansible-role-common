@@ -9,7 +9,14 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 @pytest.mark.parametrize(
     'package_name',
-    ['bash-completion', 'colordiff', 'curl', 'less', 'vim'],
+    [
+        'bash-completion',
+        'colordiff',
+        'curl',
+        'iptables-persistent',
+        'less',
+        'vim',
+    ],
 )
 def test_packages(host, package_name):
     assert host.package(package_name).is_installed
@@ -31,3 +38,14 @@ def test_default_editor(host):
     assert f.exists
     assert f.is_symlink
     assert f.linked_to == '/usr/bin/vim.basic'
+
+
+@pytest.mark.parametrize('version', [4, 6])
+def test_iptables_config(host, version):
+    f = host.file('/etc/iptables/rules.v%d' % version)
+
+    assert f.exists
+    assert f.is_file
+    assert f.user == 'root'
+    assert f.group == 'root'
+    assert f.mode == 0o644

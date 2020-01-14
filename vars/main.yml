@@ -1,1 +1,4 @@
 ---
+common__conf_dir: '/etc/iptables'
+common__conf_ipv4: '{{ common__conf_dir }}/rules.v4'
+common__conf_ipv6: '{{ common__conf_dir }}/rules.v6'

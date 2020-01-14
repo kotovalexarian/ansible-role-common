@@ -1,0 +1,44 @@
+########
+*filter
+########
+
+:INPUT   ACCEPT [0:0]
+:FORWARD DROP   [0:0]
+:OUTPUT  ACCEPT [0:0]
+
+# Remove all rules from all chains,
+# delete all user-defined chains.
+-F
+-X
+
+# Allow all loopback (lo) traffic and reject anything
+# to localhost that does not originate from lo.
+-A INPUT   -i lo           -j ACCEPT
+-A INPUT ! -i lo -s ::/128 -j REJECT
+-A OUTPUT  -o lo           -j ACCEPT
+
+# Allow all outgoing clearnet traffic.
+-A OUTPUT -o eth0 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A INPUT  -i eth0 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+# Allow all outgoing private network traffic.
+-A OUTPUT -o eth1 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A INPUT  -i eth1 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+# Allow incoming ICMPv6 ping.
+-A INPUT  -p icmpv6 --icmpv6-type echo-request -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type echo-reply   -j ACCEPT
+
+# Allow outgoing ICMPv6 ping.
+-A OUTPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type echo-reply   -j ACCEPT
+
+# Deny other ICMPv6.
+-A INPUT  -p icmpv6 -j DROP
+-A OUTPUT -p icmpv6 -j DROP
+
+# Allow incoming SSH.
+-A INPUT  -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+COMMIT

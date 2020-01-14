@@ -1,0 +1,31 @@
+---
+- name: Install iptables-persistent
+  apt:
+    update_cache: true
+    name: iptables-persistent
+
+- name: Create directory for iptables configuration
+  file:
+    state: directory
+    path: '{{ common__conf_dir }}'
+    mode: 'u=rwx,g=rx,o=rx'
+    owner: root
+    group: root
+
+- name: Install iptables rules for IPv4
+  template:
+    src: templates/rules.v4
+    dest: '{{ common__conf_ipv4 }}'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  notify: common | Load iptables rules for IPv4
+
+- name: Install iptables rules for IPv6
+  template:
+    src: templates/rules.v6
+    dest: '{{ common__conf_ipv6 }}'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  notify: common | Load iptables rules for IPv6
