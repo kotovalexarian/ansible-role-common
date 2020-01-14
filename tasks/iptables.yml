@@ -14,7 +14,7 @@
 
 - name: Install iptables rules for IPv4
   template:
-    src: templates/rules.v4
+    src: templates/iptables/rules.v4
     dest: '{{ common__iptables__conf_ipv4 }}'
     mode: 'u=rw,g=r,o=r'
     owner: root
@@ -23,7 +23,7 @@
 
 - name: Install iptables rules for IPv6
   template:
-    src: templates/rules.v6
+    src: templates/iptables/rules.v6
     dest: '{{ common__iptables__conf_ipv6 }}'
     mode: 'u=rw,g=r,o=r'
     owner: root
