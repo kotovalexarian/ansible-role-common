@@ -56,6 +56,16 @@ def test_nginx_default_removed(host):
     assert not host.file('/etc/nginx/sites-enabled/default').exists
 
 
+def test_certbot_exe(host):
+    f = host.file('/usr/local/bin/certbot-auto')
+
+    assert f.exists
+    assert f.is_file
+    assert f.user == 'root'
+    assert f.group == 'root'
+    assert f.mode == 0o755
+
+
 def test_certbot_cli_config(host):
     f = host.file('/etc/letsencrypt/cli.ini')
 

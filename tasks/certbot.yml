@@ -1,8 +1,8 @@
 ---
 - name: Install Certbot
   copy:
-    src: files/certbot/certbot
-    dest: /usr/local/bin/certbot
+    src: files/certbot/certbot-auto
+    dest: /usr/local/bin/certbot-auto
     mode: 'u=rwx,g=rx,o=rx'
     owner: root
     group: root
@@ -32,7 +32,7 @@
     group: root
 
 - name: Obtain Let's Encrypt certificate
-  command: 'certbot certonly'
+  command: 'certbot-auto certonly'
   register: common__certbot__result
   when: common__certbot__run|bool
   changed_when: >-
