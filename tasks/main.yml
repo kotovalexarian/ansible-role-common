@@ -1,17 +1,25 @@
 ---
 - include_tasks: basics.yml
+  when: >-
+    'basics'    in common__scenarios or
+    'usability' in common__scenarios
 
 - include_tasks: usability.yml
-  when: not common__only_basics|bool
+  when: >-
+    'usability' in common__scenarios
 
 - include_tasks: ssh.yml
-  when: not common__only_basics|bool
+  when: >-
+    'ssh' in common__scenarios
 
 - include_tasks: iptables.yml
-  when: not common__only_basics|bool
+  when: >-
+    'iptables' in common__scenarios
 
 - include_tasks: certbot.yml
-  when: not common__only_basics|bool
+  when: >-
+    'certbot' in common__scenarios
 
 - include_tasks: nginx.yml
-  when: not common__only_basics|bool
+  when: >-
+    'nginx' in common__scenarios

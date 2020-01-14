@@ -1,5 +1,11 @@
 ---
-common__only_basics: false
+common__scenarios:
+  - basics
+  - usability
+  - ssh
+  - iptables
+  - certbot
+  - nginx
 
 common__certbot__run: true
 common__certbot__email: 'user@example.com'
