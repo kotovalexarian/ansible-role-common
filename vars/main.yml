@@ -1,4 +1,8 @@
 ---
+common__certbot__conf_dir: '/etc/letsencrypt'
+common__certbot__conf_cli: '{{ common__certbot__conf_dir }}/cli.ini'
+common__certbot__conf_nginx: '{{ common__certbot__conf_dir }}/options-ssl-nginx.conf'
+
 common__iptables__conf_dir: '/etc/iptables'
 common__iptables__conf_ipv4: '{{ common__iptables__conf_dir }}/rules.v4'
 common__iptables__conf_ipv6: '{{ common__iptables__conf_dir }}/rules.v6'

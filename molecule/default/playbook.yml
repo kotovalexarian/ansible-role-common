@@ -7,3 +7,5 @@
   roles:
     - role: common
       become: true
+      vars:
+        common__certbot__run: false

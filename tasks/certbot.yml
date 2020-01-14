@@ -1,0 +1,40 @@
+---
+- name: Install Certbot
+  copy:
+    src: files/certbot/certbot
+    dest: /usr/local/bin/certbot
+    mode: 'u=rwx,g=rx,o=rx'
+    owner: root
+    group: root
+
+- name: Create directory for Let's Encrypt configuration
+  file:
+    state: directory
+    path: '{{ common__certbot__conf_dir }}'
+    mode: 'u=rwx,g=rx,o=rx'
+    owner: root
+    group: root
+
+- name: Install Let's Encrypt config
+  template:
+    src: templates/certbot/cli.ini
+    dest: '{{ common__certbot__conf_cli }}'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+
+- name: Install Nginx SSL options
+  copy:
+    src: files/certbot/options-ssl-nginx.conf
+    dest: '{{ common__certbot__conf_nginx }}'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+
+- name: Obtain Let's Encrypt certificate
+  command: 'certbot certonly'
+  register: common__certbot__result
+  when: common__certbot__run
+  changed_when: >-
+    common__certbot__result.stdout is
+    not search('Certificate not yet due for renewal; no action taken.')

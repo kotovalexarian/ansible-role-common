@@ -5,4 +5,5 @@
 - include_tasks: usability.yml
 - include_tasks: ssh.yml
 - include_tasks: iptables.yml
+- include_tasks: certbot.yml
 - include_tasks: nginx.yml
