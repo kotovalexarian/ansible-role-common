@@ -1,0 +1,8 @@
+---
+- name: Install basic packages
+  apt:
+    name:
+      - curl
+      - gnupg
+      - gnupg2
+      - wget

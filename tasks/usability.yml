@@ -1,7 +1,11 @@
 ---
 - name: Install useful packages
   apt:
-    name: ['bash-completion', 'colordiff', 'curl', 'less', 'vim', 'wget']
+    name:
+      - bash-completion
+      - colordiff
+      - less
+      - vim
 
 - name: Install Vim config
   copy:

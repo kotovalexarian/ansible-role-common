@@ -14,6 +14,8 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
         'certbot',
         'colordiff',
         'curl',
+        'gnupg',
+        'gnupg2',
         'iptables-persistent',
         'less',
         'vim',

@@ -1,6 +1,17 @@
 ---
+- include_tasks: basics.yml
+
 - include_tasks: usability.yml
+  when: not common__only_basics|bool
+
 - include_tasks: ssh.yml
+  when: not common__only_basics|bool
+
 - include_tasks: iptables.yml
+  when: not common__only_basics|bool
+
 - include_tasks: certbot.yml
+  when: not common__only_basics|bool
+
 - include_tasks: nginx.yml
+  when: not common__only_basics|bool
