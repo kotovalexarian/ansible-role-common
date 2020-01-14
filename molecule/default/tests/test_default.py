@@ -23,3 +23,11 @@ def test_vim_config(host):
     assert f.user == 'root'
     assert f.group == 'root'
     assert f.mode == 0o644
+
+
+def test_default_editor(host):
+    f = host.file('/usr/bin/editor')
+
+    assert f.exists
+    assert f.is_symlink
+    assert f.linked_to == '/usr/bin/vim.basic'

@@ -11,3 +11,8 @@
     mode: 'u=rw,g=r,o=r'
     owner: root
     group: root
+
+- name: Set Vim as default editor
+  alternatives:
+    name: editor
+    path: /usr/bin/vim.basic
