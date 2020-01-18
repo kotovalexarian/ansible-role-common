@@ -19,6 +19,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
         'gnupg2',
         'iptables-persistent',
         'less',
+        'procps',
         'software-properties-common',
         'vim',
         'wget',
