@@ -11,3 +11,7 @@ common__nginx__conf_dir: '/etc/nginx'
 common__nginx__confd_dir: '{{ common__nginx__conf_dir }}/conf.d'
 common__nginx__available_dir: '{{ common__nginx__conf_dir }}/sites-available'
 common__nginx__enabled_dir: '{{ common__nginx__conf_dir }}/sites-enabled'
+
+common__apache__conf_dir: '/etc/apache2'
+common__apache__available_dir: '{{ common__apache__conf_dir }}/sites-available'
+common__apache__enabled_dir: '{{ common__apache__conf_dir }}/sites-enabled'

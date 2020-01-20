@@ -10,6 +10,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 @pytest.mark.parametrize(
     'package_name',
     [
+        'apache2',
         'apt-transport-https',
         'bash-completion',
         'certbot',
@@ -19,6 +20,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
         'gnupg2',
         'iptables-persistent',
         'less',
+        'nginx',
         'procps',
         'software-properties-common',
         'vim',
@@ -61,6 +63,11 @@ def test_iptables_config(host, version):
 def test_nginx_default_removed(host):
     assert host.file('/etc/nginx/sites-available/default').exists
     assert not host.file('/etc/nginx/sites-enabled/default').exists
+
+
+def test_apache_default_removed(host):
+    assert host.file('/etc/apache2/sites-available/000-default.conf').exists
+    assert not host.file('/etc/apache2/sites-enabled/000-default.conf').exists
 
 
 def test_certbot_cli_config(host):

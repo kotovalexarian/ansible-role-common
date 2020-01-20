@@ -1,0 +1,30 @@
+---
+- name: Install Apache
+  apt:
+    name: apache2
+
+- name: Create directories for Apache configuration
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rx,o=rx'
+    owner: root
+    group: root
+  with_items:
+    - '{{ common__apache__conf_dir }}'
+    - '{{ common__apache__available_dir }}'
+    - '{{ common__apache__enabled_dir }}'
+
+- name: Disable directory listing
+  lineinfile:
+    path: /etc/apache2/apache2.conf
+    regexp: '^Options Indexes FollowSymLinks$'
+    line: 'Options FollowSymLinks'
+  notify: common | Restart Apache
+
+- name: Remove Apache default site
+  file:
+    state: absent
+    path: '{{ common__apache__enabled_dir }}/000-default.conf'
+  when: common__apache__remove_default|bool
+  notify: common | Restart Apache

@@ -20,7 +20,7 @@
   file:
     state: absent
     path: '{{ common__nginx__enabled_dir }}/default'
-  when: common__nginx__remove_default | bool
+  when: common__nginx__remove_default|bool
   notify: common | Restart Nginx
 
 - name: Add Nginx upstreams

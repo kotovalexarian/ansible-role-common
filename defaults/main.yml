@@ -9,3 +9,5 @@ common__certbot__pre_hook: 'systemctl is-active nginx.service && systemctl stop 
 common__nginx__remove_default: true
 common__nginx__upstreams: []
 common__nginx__sites: []
+
+common__apache__remove_default: true

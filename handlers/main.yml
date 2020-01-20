@@ -16,3 +16,9 @@
     daemon_reload: true
     name: nginx
     state: restarted
+
+- name: common | Restart Apache
+  systemd:
+    daemon_reload: true
+    name: apache2
+    state: restarted
