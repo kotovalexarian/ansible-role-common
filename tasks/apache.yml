@@ -42,6 +42,7 @@
 - name: Enable Apache sites
   command: '/usr/sbin/a2ensite "{{ item.domain }}.conf"'
   register: common__apache__enable_apache_sites_result
-  changed_when: "common__apache__enable_apache_sites_result.stdout is search('Enabling site {{ item.domain }}')"
+  changed_when: >
+    common__apache__enable_apache_sites_result.stdout is search('Enabling site')
   with_items: '{{ common__apache__sites }}'
   notify: common | Restart Apache
