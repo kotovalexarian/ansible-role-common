@@ -1,4 +1,6 @@
 ---
+common__basics__additional_packages: []
+
 common__certbot__run: true
 common__certbot__email: 'user@example.com'
 common__certbot__cert_name: 'example.com'

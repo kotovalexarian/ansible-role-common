@@ -9,4 +9,5 @@
     - role: common
       become: true
       vars:
+        common__basics__additional_packages: ['libapache2-mod-php']
         common__certbot__run: false

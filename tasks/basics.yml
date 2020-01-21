@@ -9,3 +9,7 @@
       - procps
       - software-properties-common
       - wget
+
+- name: Install additional packages
+  apt:
+    name: '{{ common__basics__additional_packages }}'

@@ -20,6 +20,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
         'gnupg2',
         'iptables-persistent',
         'less',
+        'libapache2-mod-php',
         'nginx',
         'procps',
         'software-properties-common',
