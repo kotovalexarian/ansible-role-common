@@ -29,6 +29,14 @@
   when: common__apache__remove_default|bool
   notify: common | Restart Apache
 
+- name: Enable Apache modules
+  command: '/usr/sbin/a2enmod "{{ item }}"'
+  register: common__apache__enable_apache_modules_result
+  changed_when: >
+    common__apache__enable_apache_modules_result.stdout is search('Enabling module')
+  with_items: '{{ common__apache__modules }}'
+  notify: common | Restart Apache
+
 - name: Add Apache sites
   template:
     src: 'templates/apache/{{ item.type }}.conf'
