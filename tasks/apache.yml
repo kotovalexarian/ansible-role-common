@@ -28,3 +28,20 @@
     path: '{{ common__apache__enabled_dir }}/000-default.conf'
   when: common__apache__remove_default|bool
   notify: common | Restart Apache
+
+- name: Add Apache sites
+  template:
+    src: 'templates/apache/{{ item.type }}.conf'
+    dest: '{{ common__apache__available_dir }}/{{ item.domain }}.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  with_items: '{{ common__apache__sites }}'
+  notify: common | Restart Apache
+
+- name: Enable Apache sites
+  command: '/usr/sbin/a2ensite "{{ item.domain }}.conf"'
+  register: common__apache__enable_apache_sites_result
+  changed_when: "common__apache__enable_apache_sites_result.stdout is search('Enabling site {{ item.domain }}')"
+  with_items: '{{ common__apache__sites }}'
+  notify: common | Restart Apache
