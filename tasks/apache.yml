@@ -1,7 +1,9 @@
 ---
 - name: Install Apache
   apt:
-    name: apache2
+    name:
+      - apache2
+      - libapache2-mod-php
 
 - name: Create directories for Apache configuration
   file:
