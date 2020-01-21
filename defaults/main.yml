@@ -11,5 +11,5 @@ common__nginx__upstreams: []
 common__nginx__sites: []
 
 common__apache__remove_default: true
-common__apache__modules: ['php7.3', 'rewrite', 'ssl']
+common__apache__modules: ['rewrite', 'ssl']
 common__apache__sites: []
