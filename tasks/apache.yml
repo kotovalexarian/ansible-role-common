@@ -15,6 +15,15 @@
     - '{{ common__apache__available_dir }}'
     - '{{ common__apache__enabled_dir }}'
 
+- name: Configure Apache ports
+  template:
+    src: templates/apache/ports.conf
+    dest: /etc/apache2/ports.conf
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  notify: common | Restart Apache
+
 - name: Disable directory listing
   lineinfile:
     path: /etc/apache2/apache2.conf
