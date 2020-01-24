@@ -14,5 +14,5 @@ common__nginx__sites: []
 
 common__apache__remove_default: true
 common__apache__listen: ['127.0.0.1:8080']
-common__apache__modules: ['rewrite', 'ssl']
+common__apache__modules: ['cgid', 'rewrite', 'ssl']
 common__apache__sites: []
