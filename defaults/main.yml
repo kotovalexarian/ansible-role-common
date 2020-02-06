@@ -8,12 +8,12 @@ common__certbot__cert_domains: ['example.com', 'www.example.com']
 common__certbot__post_hook: 'systemctl is-active nginx.service || systemctl start nginx.service'
 common__certbot__pre_hook: 'systemctl is-active nginx.service && systemctl stop nginx.service || true'
 
-common__nginx__state: install
+common__nginx__state: null
 common__nginx__remove_default: true
 common__nginx__upstreams: []
 common__nginx__sites: []
 
-common__apache__state: install
+common__apache__state: null
 common__apache__remove_default: true
 common__apache__listen: ['127.0.0.1:8080']
 common__apache__modules: ['alias', 'cgid', 'env', 'rewrite', 'ssl']

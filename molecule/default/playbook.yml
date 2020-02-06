@@ -11,3 +11,5 @@
       vars:
         common__basics__additional_packages: ['libapache2-mod-php']
         common__certbot__run: false
+        common__nginx__state: install
+        common__apache__state: install
