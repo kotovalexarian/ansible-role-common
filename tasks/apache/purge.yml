@@ -1,0 +1,11 @@
+---
+- name: Purge Apache
+  apt:
+    name: apache2
+    state: absent
+    purge: true
+
+- name: Delete Apache configuration
+  file:
+    state: absent
+    path: '{{ common__apache__conf_dir }}'

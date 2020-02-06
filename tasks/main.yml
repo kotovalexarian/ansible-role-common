@@ -5,6 +5,8 @@
 - include_tasks: iptables.yml
 - include_tasks: certbot.yml
 
+- include_tasks: apache/purge.yml
+  when: common__apache__state == 'purge'
 - include_tasks: apache/install.yml
   when: common__apache__state == 'install'
 - meta: flush_handlers
