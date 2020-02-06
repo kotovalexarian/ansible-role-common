@@ -19,7 +19,7 @@
 - name: Configure Apache ports
   template:
     src: templates/apache/ports.conf
-    dest: /etc/apache2/ports.conf
+    dest: '{{ common__apache__conf_dir }}/ports.conf'
     mode: 'u=rw,g=r,o=r'
     owner: root
     group: root
@@ -27,7 +27,7 @@
 
 - name: Disable directory listing
   lineinfile:
-    path: /etc/apache2/apache2.conf
+    path: '{{ common__apache__conf_dir }}/apache2.conf'
     regexp: '^Options Indexes FollowSymLinks$'
     line: 'Options FollowSymLinks'
   notify: common | Restart Apache
