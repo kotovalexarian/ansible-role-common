@@ -1,0 +1,11 @@
+---
+- name: Purge Nginx
+  apt:
+    name: nginx
+    state: absent
+    purge: true
+
+- name: Delete Nginx configuration
+  file:
+    state: absent
+    path: '{{ common__nginx__conf_dir }}'

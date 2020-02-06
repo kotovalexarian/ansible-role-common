@@ -11,6 +11,8 @@
   when: common__apache__state == 'install'
 - meta: flush_handlers
 
+- include_tasks: nginx/purge.yml
+  when: common__nginx__state == 'purge'
 - include_tasks: nginx/install.yml
   when: common__nginx__state == 'install'
 - meta: flush_handlers
