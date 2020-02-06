@@ -4,5 +4,7 @@
 - include_tasks: ssh.yml
 - include_tasks: iptables.yml
 - include_tasks: certbot.yml
-- include_tasks: nginx.yml
 - include_tasks: apache.yml
+- meta: flush_handlers
+- include_tasks: nginx.yml
+- meta: flush_handlers
