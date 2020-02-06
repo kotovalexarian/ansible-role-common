@@ -14,6 +14,7 @@
     - '{{ common__apache__conf_dir }}'
     - '{{ common__apache__available_dir }}'
     - '{{ common__apache__enabled_dir }}'
+    - '{{ common__apache__snippets_dir }}'
 
 - name: Configure Apache ports
   template:

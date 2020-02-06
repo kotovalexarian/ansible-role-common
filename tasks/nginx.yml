@@ -15,6 +15,7 @@
     - '{{ common__nginx__confd_dir }}'
     - '{{ common__nginx__available_dir }}'
     - '{{ common__nginx__enabled_dir }}'
+    - '{{ common__nginx__snippets_dir }}'
 
 - name: Remove Nginx default site
   file:
