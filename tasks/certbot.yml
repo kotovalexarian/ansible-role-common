@@ -20,8 +20,8 @@
     group: root
 
 - name: Install Nginx SSL options
-  copy:
-    src: files/certbot/options-ssl-nginx.conf
+  template:
+    src: templates/certbot/options-ssl-nginx.conf
     dest: '{{ common__certbot__conf_nginx }}'
     mode: 'u=rw,g=r,o=r'
     owner: root
