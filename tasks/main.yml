@@ -4,6 +4,7 @@
 - include_tasks: ssh.yml
 - include_tasks: iptables.yml
 - include_tasks: certbot.yml
+- meta: flush_handlers
 
 - include_tasks: apache/purge.yml
   when: common__apache__state == 'purge'
