@@ -4,11 +4,11 @@
 - include_tasks: ssh.yml
 - meta: flush_handlers
 
-- include_tasks: iptables.yml
+- include_tasks: iptables/install.yml
   when: common__iptables__state == 'install'
 - meta: flush_handlers
 
-- include_tasks: certbot.yml
+- include_tasks: certbot/install.yml
   when: common__certbot__state == 'install'
 - meta: flush_handlers
 
