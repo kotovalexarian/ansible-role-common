@@ -2,8 +2,14 @@
 - include_tasks: basics.yml
 - include_tasks: usability.yml
 - include_tasks: ssh.yml
+- meta: flush_handlers
+
 - include_tasks: iptables.yml
+  when: common__iptables__state == 'install'
+- meta: flush_handlers
+
 - include_tasks: certbot.yml
+  when: common__certbot__state == 'install'
 - meta: flush_handlers
 
 - include_tasks: apache/purge.yml

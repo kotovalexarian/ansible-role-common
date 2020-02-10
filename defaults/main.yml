@@ -1,6 +1,9 @@
 ---
 common__basics__additional_packages: []
 
+common__iptables__state: install
+
+common__certbot__state: install
 common__certbot__run: true
 common__certbot__email: 'user@example.com'
 common__certbot__cert_name: 'example.com'
