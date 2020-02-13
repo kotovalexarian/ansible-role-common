@@ -1,0 +1,13 @@
+---
+- name: Purge iptables-persistent
+  apt:
+    state: absent
+    purge: true
+    name:
+     - iptables-persistent
+     - netfilter-persistent
+
+- name: Delete iptables-persistent configuration
+  file:
+    state: absent
+    path: '{{ common__iptables__conf_dir }}'
