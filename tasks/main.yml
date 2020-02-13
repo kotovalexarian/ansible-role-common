@@ -8,6 +8,8 @@
   when: common__iptables__state == 'install'
 - meta: flush_handlers
 
+- include_tasks: certbot/purge.yml
+  when: common__certbot__state == 'purge'
 - include_tasks: certbot/install.yml
   when: common__certbot__state == 'install'
 - meta: flush_handlers

@@ -1,0 +1,11 @@
+---
+- name: Purge Certbot
+  apt:
+    name: certbot
+    state: absent
+    purge: true
+
+- name: Delete Certbot configuration
+  file:
+    state: absent
+    path: '{{ common__certbot__conf_dir }}'
