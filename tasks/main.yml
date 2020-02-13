@@ -5,7 +5,7 @@
 - meta: flush_handlers
 
 - include_tasks: iptables/purge.yml
-  when common__iptables__state == 'purge'
+  when: common__iptables__state == 'purge'
 - include_tasks: iptables/install.yml
   when: common__iptables__state == 'install'
 - meta: flush_handlers
