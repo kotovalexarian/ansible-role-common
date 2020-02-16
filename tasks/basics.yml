@@ -6,6 +6,7 @@
       - curl
       - gnupg
       - gnupg2
+      - net-tools
       - procps
       - software-properties-common
       - wget
