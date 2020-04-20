@@ -1,9 +1,12 @@
 ---
 - name: Purge Nginx
   apt:
-    name: nginx
     state: absent
     purge: true
+    name:
+      - nginx
+      - nginx-common
+      - nginx-core
 
 - name: Delete Nginx configuration
   file:
