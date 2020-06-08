@@ -3,7 +3,9 @@
   apt:
     name:
       - apt-transport-https
+      - build-essential
       - curl
+      - git
       - gnupg
       - gnupg2
       - net-tools
