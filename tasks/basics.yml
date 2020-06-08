@@ -9,7 +9,9 @@
       - net-tools
       - procps
       - software-properties-common
+      - unzip
       - wget
+      - zip
 
 - name: Install additional packages
   apt:
