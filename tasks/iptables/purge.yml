@@ -4,8 +4,8 @@
     state: absent
     purge: true
     name:
-     - iptables-persistent
-     - netfilter-persistent
+      - iptables-persistent
+      - netfilter-persistent
 
 - name: Delete iptables-persistent configuration
   file:
