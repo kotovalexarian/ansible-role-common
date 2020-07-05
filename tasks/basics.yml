@@ -8,6 +8,7 @@
       - git
       - gnupg
       - gnupg2
+      - gzip
       - net-tools
       - pkg-config
       - procps
