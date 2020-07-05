@@ -21,13 +21,26 @@
 -A OUTPUT -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 -A INPUT  -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
-# Allow incoming ICMPv6 ping.
--A INPUT  -p icmpv6 --icmpv6-type echo-request -j ACCEPT
--A OUTPUT -p icmpv6 --icmpv6-type echo-reply   -j ACCEPT
-
-# Allow outgoing ICMPv6 ping.
--A OUTPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT
--A INPUT  -p icmpv6 --icmpv6-type echo-reply   -j ACCEPT
+# Allow some important ICMP.
+-A INPUT  -p icmpv6 --icmpv6-type echo-request   -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type echo-request   -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type echo-reply     -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type echo-reply     -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type packet-too-big -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type packet-too-big -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type time-exceeded  -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type time-exceeded  -j ACCEPT
+# TODO: maybe it's better to only allow these inside private network?
+-A INPUT  -p icmpv6 --icmpv6-type router-solicitation     -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type router-solicitation     -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type router-advertisement    -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type router-advertisement    -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type neighbour-solicitation  -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type neighbour-solicitation  -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type neighbour-advertisement -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type neighbour-advertisement -j ACCEPT
+-A INPUT  -p icmpv6 --icmpv6-type redirect                -j ACCEPT
+-A OUTPUT -p icmpv6 --icmpv6-type redirect                -j ACCEPT
 
 # Deny other ICMPv6.
 -A INPUT  -p icmpv6 -j DROP
