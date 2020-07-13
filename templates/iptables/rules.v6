@@ -50,4 +50,6 @@
 -A INPUT  -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 -A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
+{{ common__iptables__v6_filter }}
+
 COMMIT
