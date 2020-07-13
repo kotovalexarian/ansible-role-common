@@ -14,6 +14,8 @@ common__nginx__enabled_dir: '{{ common__nginx__conf_dir }}/sites-enabled'
 common__nginx__snippets_dir: '{{ common__nginx__conf_dir }}/snippets'
 
 common__apache__conf_dir: '/etc/apache2'
+common__apache__conf_available_dir: '{{ common__apache__conf_dir }}/conf-available'
+common__apache__conf_enabled_dir: '{{ common__apache__conf_dir }}/conf-enabled'
 common__apache__available_dir: '{{ common__apache__conf_dir }}/sites-available'
 common__apache__enabled_dir: '{{ common__apache__conf_dir }}/sites-enabled'
 common__apache__snippets_dir: '{{ common__apache__conf_dir }}/snippets'

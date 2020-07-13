@@ -16,6 +16,16 @@
     - '{{ common__nginx__available_dir }}'
     - '{{ common__nginx__enabled_dir }}'
     - '{{ common__nginx__snippets_dir }}'
+  notify: common | Restart Nginx
+
+- name: Install Nginx log config
+  copy:
+    src: 'files/nginx/syslog.conf'
+    dest: '{{ common__nginx__confd_dir }}/syslog.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  notify: common | Restart Nginx
 
 - name: Remove Nginx default site
   file:

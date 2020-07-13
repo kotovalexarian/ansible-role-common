@@ -12,6 +12,8 @@
     group: root
   with_items:
     - '{{ common__apache__conf_dir }}'
+    - '{{ common__apache__conf_available_dir }}'
+    - '{{ common__apache__conf_enabled_dir }}'
     - '{{ common__apache__available_dir }}'
     - '{{ common__apache__enabled_dir }}'
     - '{{ common__apache__snippets_dir }}'
@@ -30,6 +32,24 @@
     path: '{{ common__apache__conf_dir }}/apache2.conf'
     regexp: '^Options Indexes FollowSymLinks$'
     line: 'Options FollowSymLinks'
+  notify: common | Restart Apache
+
+- name: Install Apache log config
+  copy:
+    src: 'files/apache/syslog.conf'
+    dest: '{{ common__apache__conf_available_dir }}/syslog.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  notify: common | Restart Apache
+
+- name: Enable Apache log config
+  file:
+    state: link
+    src: '{{ common__apache__conf_available_dir }}/syslog.conf'
+    dest: '{{ common__apache__conf_enabled_dir }}/syslog.conf'
+    owner: root
+    group: root
   notify: common | Restart Apache
 
 - name: Remove Apache default site
