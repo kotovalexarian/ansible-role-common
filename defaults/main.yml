@@ -2,6 +2,7 @@
 common__basics__additional_packages: []
 
 common__iptables__state: install
+common__iptables__drop_by_default: false
 
 common__certbot__state: install
 common__certbot__run: true

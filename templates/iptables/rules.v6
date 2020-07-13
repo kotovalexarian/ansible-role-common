@@ -2,9 +2,9 @@
 *filter
 ########
 
-:INPUT   ACCEPT [0:0]
-:FORWARD DROP   [0:0]
-:OUTPUT  ACCEPT [0:0]
+:INPUT   {{ 'DROP' if common__iptables__drop_by_default else 'ACCEPT' }} [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT  {{ 'DROP' if common__iptables__drop_by_default else 'ACCEPT' }} [0:0]
 
 # Remove all rules from all chains,
 # delete all user-defined chains.
