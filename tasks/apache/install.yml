@@ -34,6 +34,11 @@
     line: 'Options FollowSymLinks'
   notify: common | Restart Apache
 
+- name: Disable Apache logging
+  file:
+    state: absent
+    path: '{{ common__apache__conf_enabled_dir }}/other-vhosts-access-log.conf'
+
 - name: Install Apache log config
   copy:
     src: 'files/apache/syslog.conf'
