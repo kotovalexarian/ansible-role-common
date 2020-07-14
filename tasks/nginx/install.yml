@@ -18,6 +18,20 @@
     - '{{ common__nginx__snippets_dir }}'
   notify: common | Restart Nginx
 
+- name: Disable Nginx access log
+  lineinfile:
+    path: '{{ common__nginx__conf_dir }}/nginx.conf'
+    regexp: '^(\s*)#?\s*access_log\s+\S+\s*;\s*$'
+    line: '\1#access_log /var/log/nginx/access.log;'
+    backrefs: true
+
+- name: Disable Nginx error log
+  lineinfile:
+    path: '{{ common__nginx__conf_dir }}/nginx.conf'
+    regexp: '^(\s*)#?\s*error_log\s+\S+\s*;\s*$'
+    line: '\1#error_log /var/log/nginx/error.log;'
+    backrefs: true
+
 - name: Install Nginx log config
   copy:
     src: 'files/nginx/syslog.conf'
