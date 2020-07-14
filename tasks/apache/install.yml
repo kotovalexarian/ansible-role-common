@@ -27,13 +27,6 @@
     group: root
   notify: common | Restart Apache
 
-- name: Disable directory listing
-  lineinfile:
-    path: '{{ common__apache__conf_dir }}/apache2.conf'
-    regexp: '^Options Indexes FollowSymLinks$'
-    line: 'Options FollowSymLinks'
-  notify: common | Restart Apache
-
 - name: Disable Apache logging
   file:
     state: absent
@@ -55,6 +48,13 @@
     dest: '{{ common__apache__conf_enabled_dir }}/syslog.conf'
     owner: root
     group: root
+  notify: common | Restart Apache
+
+- name: Disable directory listing
+  lineinfile:
+    path: '{{ common__apache__conf_dir }}/apache2.conf'
+    regexp: '^Options Indexes FollowSymLinks$'
+    line: 'Options FollowSymLinks'
   notify: common | Restart Apache
 
 - name: Remove Apache default site
