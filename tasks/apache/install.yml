@@ -17,6 +17,7 @@
     - '{{ common__apache__available_dir }}'
     - '{{ common__apache__enabled_dir }}'
     - '{{ common__apache__snippets_dir }}'
+  notify: common | Restart Apache
 
 - name: Configure Apache ports
   template:
@@ -31,6 +32,7 @@
   file:
     state: absent
     path: '{{ common__apache__conf_enabled_dir }}/other-vhosts-access-log.conf'
+  notify: common | Restart Apache
 
 - name: Install Apache log config
   copy:
